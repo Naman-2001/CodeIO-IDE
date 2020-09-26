@@ -7,7 +7,8 @@ import { Typography } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import copy from "copy-to-clipboard";
 import MenuBar from "./MenuBar";
-import "./foldgutter.css";
+import "./CodeIO.css";
+
 require("codemirror/lib/codemirror.css");
 require("codemirror/theme/material.css");
 require("codemirror/theme/neat.css");
@@ -27,6 +28,7 @@ require("codemirror/addon/fold/markdown-fold.js");
 require("codemirror/addon/fold/xml-fold.js");
 require("codemirror/addon/comment/comment.js");
 var base64 = require("base-64");
+
 function CodeIO() {
   const [code, setCode] = useState("");
   const [token, setToken] = useState("");
@@ -60,13 +62,16 @@ function CodeIO() {
       .then((response) => {
         console.log(response.data);
         setToken(response.data.token);
+        setTimeout(() => {
+          handleSubmit(response.data.token);
+        }, 5000);
       })
       .catch((error) => {
         console.log(error);
       });
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = (token) => {
     axios({
       method: "GET",
       url: `https://judge0.p.rapidapi.com/submissions/${token}?base64_encoded=true`,
@@ -91,13 +96,13 @@ function CodeIO() {
       });
   };
 
-  const handleChange = (value) => {
-    setCode(value);
-  };
+  // const handleChange = (value) => {
+  //   setCode(value);
+  // };
 
-  const handleInput = (value) => {
-    setInput(value);
-  };
+  // const handleInput = (value) => {
+  //   setInput(value);
+  // };
 
   const handleLanguage = (lang) => {
     setLang(lang);
@@ -166,71 +171,153 @@ function CodeIO() {
 
   return (
     <div style={{ width: "100%" }}>
-      <div style={{ margin: "30px" }}>
-        <Grid>
-          <MenuBar
-            handleLanguage={handleLanguage}
-            handleReset={handleReset}
-            handleTheme={handleTheme}
-          />
-        </Grid>
-        <Grid>
-          <CodeMirror
-            id="textarea"
-            // value={reset ? " " : { code }}
-            value={code}
-            options={{
-              mode:
-                lang === 54 ? "text/x-c++src" : lang === 71 ? "python" : null,
-              // mode: "python",
-              theme: theme2,
-              lineNumbers: true,
-              lineWrapping: true,
-              matchBrackets: true,
-              smartIndent: true,
-              autoCloseBrackets: true,
-              extraKeys: {
-                "Ctrl-Q": function (cm) {
-                  cm.foldCode(cm.getCursor());
-                },
-
-                // 'Ctrl-/': editor.execCommand('toggleComment')
-                "Ctrl-/": function (cm) {
-                  cm.execCommand(cm.toggleComment());
-                },
-              },
-              foldGutter: true,
-              gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"],
-            }}
-            onBeforeChange={(editor, data, value) => {
-              setReset(false);
-              setCode(value);
-            }}
-          />
-          <button
-            style={{
-              // position: "absolute",
-              // right: "32px",
-              // top: "85px",
-              // cursor: "pointer",
-              position: "relative",
-              left: "71rem",
-              bottom: "21.3rem",
-              cursor: "pointer",
-              zIndex: "10",
-            }}
-            onClick={() => {
-              copy(code);
-            }}
+      <Grid
+        container
+        style={{
+          // height: "100vh",
+          width: "100%",
+          // padding: "20px",
+        }}
+      >
+        <Grid item container sm={8}>
+          <Grid
+            item
+            sm={12}
+            style={{ height: "85vh", border: "4px solid black" }}
           >
-            <FileCopyOutlinedIcon />
-          </button>
+            <CodeMirror //code
+              id="textarea"
+              // value={reset ? " " : { code }}
+              value={code}
+              editorDidMount={(editor) => {
+                editor.setSize("", "83.7vh");
+              }}
+              options={{
+                mode:
+                  lang === 54 ? "text/x-c++src" : lang === 71 ? "python" : null,
+                // mode: "python",
+                theme: theme2,
+                lineNumbers: true,
+                lineWrapping: true,
+                matchBrackets: true,
+                smartIndent: true,
+                autoCloseBrackets: true,
+                extraKeys: {
+                  "Ctrl-Q": function (cm) {
+                    cm.foldCode(cm.getCursor());
+                  },
+
+                  // 'Ctrl-/': editor.execCommand('toggleComment')
+                  "Ctrl-/": function (cm) {
+                    cm.execCommand(cm.toggleComment());
+                  },
+                },
+                foldGutter: true,
+                gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"],
+              }}
+              onBeforeChange={(editor, data, value) => {
+                setReset(false);
+                setCode(value);
+              }}
+            />
+            <button
+              style={{
+                // position: "absolute",
+                // right: "32px",
+                // top: "85px",
+                // cursor: "pointer",
+                position: "relative",
+                left: "49rem",
+                top: "7px",
+                cursor: "pointer",
+                zIndex: "10",
+              }}
+              onClick={() => {
+                copy(code);
+              }}
+            >
+              <FileCopyOutlinedIcon />
+            </button>
+          </Grid>
+          <Grid item sm={12}>
+            <MenuBar
+              handleLanguage={handleLanguage}
+              handleReset={handleReset}
+              handleTheme={handleTheme}
+            />
+          </Grid>
         </Grid>
-      </div>
-      <Grid container style={{ padding: "20px" }}>
+
+        <Grid item container sm={4} spacing={0}>
+          <Grid item container style={{ height: "85vh" }}>
+            <Grid
+              item
+              sm={12}
+              style={{ width: "414.5px", border: "4px solid black" }}
+            >
+              <CodeMirror //input
+                name="code"
+                value={input}
+                editorDidMount={(editor) => {
+                  editor.setSize("", "270px");
+                }}
+                options={{
+                  mode: "text/x-c++src",
+                  theme: theme2,
+                  lineNumbers: true,
+                  foldOptions: true,
+                  foldGutter: true,
+                  gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"],
+                }}
+                onBeforeChange={(editor, data, value) => {
+                  setInput(value);
+                }}
+              />
+            </Grid>
+            <Grid
+              item
+              sm={12}
+              style={{ width: "414.5px", border: "4px solid black" }}
+            >
+              <CodeMirror //output
+                name="code"
+                value={output}
+                editorDidMount={(editor) => {
+                  editor.setSize("", "232px");
+                }}
+                options={{
+                  mode: "text/x-c++src",
+                  theme: theme2,
+                  lineNumbers: true,
+                  gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"],
+                  // matchBrackets: true,
+                  // autoCloseBrackets: true,
+                }}
+              />
+            </Grid>
+          </Grid>
+          <Grid item sm={12}>
+            <Button
+              style={{
+                width: "100%",
+                height: "7.5vh",
+                margin: "0px",
+                borderRadius: "0px",
+              }}
+              variant="contained"
+              color="primary"
+              onClick={handleSubmitCode}
+            >
+              Run
+            </Button>
+          </Grid>
+        </Grid>
+      </Grid>
+
+      {/* <Grid container style={{ padding: "20px" }}>
         <Grid item container sm={6} justify="center">
           <Grid item style={{ width: "500px" }}>
-            <CodeMirror
+            <CodeMirror //input
               name="code"
               value={input}
               options={{
@@ -252,21 +339,18 @@ function CodeIO() {
             onClick={handleSubmitCode}
             style={{ width: "70px" }}
           >
-            {/* C <br /> o <br />m<br />p<br />i<br />l<br />e */}
             Compile
           </Button>
         </Grid>
         <Grid item container sm={6} justify="center">
           <Grid item style={{ width: "500px" }}>
-            <CodeMirror
+            <CodeMirror //output
               name="code"
               value={output}
               options={{
                 mode: "text/x-c++src",
                 theme: theme2,
                 lineNumbers: true,
-                // matchBrackets: true,
-                // autoCloseBrackets: true,
               }}
             />
           </Grid>
@@ -277,11 +361,10 @@ function CodeIO() {
             color="primary"
             onClick={handleSubmit}
           >
-            {/* R<br />u<br />n */}
             Run
           </Button>
         </Grid>
-      </Grid>
+      </Grid> */}
     </div>
   );
 }

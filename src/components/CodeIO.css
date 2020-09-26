@@ -1,0 +1,15 @@
+.button {
+  width: 70px !important;
+}
+
+/* .CodeMirror-code {
+  height: 85vh;
+}
+
+.CodeMirror-input {
+  height: 300vh !important;
+} */
+
+.CodeMirror-gutters {
+  background-color: #354953 !important;
+}

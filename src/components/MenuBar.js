@@ -12,8 +12,27 @@ import Select from "@material-ui/core/Select";
 import { Button } from "@material-ui/core";
 import Brightness7Icon from "@material-ui/icons/Brightness7";
 import SubjectIcon from "@material-ui/icons/Subject";
+import { makeStyles } from "@material-ui/core/styles";
+import "../App.css";
+const useStyles = makeStyles((theme) => ({
+  root: {
+    "& .MuiOutlinedInput-input": {
+      padding: "0px",
+    },
+  },
+
+  formControl: {
+    margin: theme.spacing(1),
+    minWidth: 120,
+  },
+  selectEmpty: {
+    marginTop: theme.spacing(2),
+  },
+}));
 
 const MenuBar = ({ handleLanguage, handleReset, handleTheme }) => {
+  const classes = useStyles();
+
   const [lang, setLang] = useState("C++");
   const [theme, setTheme] = useState("material");
 
@@ -22,19 +41,27 @@ const MenuBar = ({ handleLanguage, handleReset, handleTheme }) => {
       <Toolbar variant="dense">
         <Grid container>
           <Grid item container justify="flex-start">
-            <Grid item>
+            <Grid
+              item
+              style={{
+                marginTop: "5px",
+                height: "40px",
+              }}
+            >
               <FormControl
                 variant="outlined"
-                size="small"
-                style={{ width: "180px", height: "30px", marginBottom: "5px" }}
+                style={{
+                  width: "170px",
+                  height: "30px",
+                  borderRadius: "4px",
+                  backgroundColor: "white",
+                }}
               >
-                <InputLabel id="demo-simple-select-outlined-label">
-                  Language
-                </InputLabel>
                 <Select
+                  style={{ height: "30px", padding: "0px !important" }}
                   value={lang}
-                  labelId="demo-simple-select-outlined-label"
-                  id="demo-simple-select-outlined"
+                  // labelId="demo-simple-select-outlined-label"
+                  // id="demo-simple-select-outlined"
                   label="C++"
                   onChange={(e) => {
                     setLang(e.target.value);
@@ -47,16 +74,16 @@ const MenuBar = ({ handleLanguage, handleReset, handleTheme }) => {
                   <MenuItem value={71}>
                     <em>Python</em>
                   </MenuItem>
-                  <MenuItem value={62}>
+                  {/* <MenuItem value={62}>
                     <em>Java</em>
                   </MenuItem>
                   <MenuItem value={63}>
                     <em>Javascript</em>
-                  </MenuItem>
+                  </MenuItem> */}
                 </Select>
               </FormControl>
             </Grid>
-            <Grid item style={{ marginLeft: "30px" }}>
+            <Grid item style={{ margin: "5px 0px 0px 30px" }}>
               <Button
                 onClick={() => {
                   handleReset(true);
@@ -67,7 +94,7 @@ const MenuBar = ({ handleLanguage, handleReset, handleTheme }) => {
                 Reset
               </Button>
             </Grid>
-            <Grid item style={{ margin: "0px 0px 5px 30px" }}>
+            <Grid item style={{ margin: "5px 0px 5px 30px" }}>
               <Button
                 onClick={() => {
                   setTheme((prev) => {
@@ -83,7 +110,7 @@ const MenuBar = ({ handleLanguage, handleReset, handleTheme }) => {
                 <Brightness7Icon />
               </Button>
             </Grid>
-            <Grid item style={{ margin: "0px 0px 5px 30px" }}>
+            <Grid item style={{ margin: "5px 0px 5px 30px" }}>
               <Button>
                 <SubjectIcon />
               </Button>
