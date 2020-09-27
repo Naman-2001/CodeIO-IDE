@@ -170,18 +170,19 @@ function CodeIO() {
   };
 
   return (
-    <div style={{ width: "100%" }}>
+    <div style={{ width: "100%", height: "560px" }}>
       <Grid
         container
         style={{
-          // height: "100vh",
+          height: "560px",
           width: "100%",
           // padding: "20px",
         }}
       >
-        <Grid item container sm={8}>
+        <Grid item container xs={12} sm={8}>
           <Grid
             item
+            xs={12}
             sm={12}
             style={{ height: "85vh", border: "4px solid black" }}
           >
@@ -220,7 +221,7 @@ function CodeIO() {
                 setCode(value);
               }}
             />
-            <button
+            {/* <button
               style={{
                 // position: "absolute",
                 // right: "32px",
@@ -237,9 +238,14 @@ function CodeIO() {
               }}
             >
               <FileCopyOutlinedIcon />
-            </button>
+            </button> */}
           </Grid>
-          <Grid item sm={12}>
+          <Grid
+            item
+            xs={12}
+            sm={12}
+            style={{ height: "46px", border: "2px solid black" }}
+          >
             <MenuBar
               handleLanguage={handleLanguage}
               handleReset={handleReset}
@@ -248,59 +254,56 @@ function CodeIO() {
           </Grid>
         </Grid>
 
-        <Grid item container sm={4} spacing={0}>
+        <Grid item container xs={12} sm={4} spacing={0}>
           <Grid item container style={{ height: "85vh" }}>
-            <Grid
-              item
-              sm={12}
-              style={{ width: "414.5px", border: "4px solid black" }}
-            >
+            <Grid item xs={12} sm={12} style={{ border: "4px solid black" }}>
               <CodeMirror //input
                 name="code"
                 value={input}
                 editorDidMount={(editor) => {
-                  editor.setSize("", "270px");
+                  editor.setSize("", "42vh");
                 }}
                 options={{
                   mode: "text/x-c++src",
                   theme: theme2,
-                  lineNumbers: true,
-                  foldOptions: true,
-                  foldGutter: true,
-                  gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"],
+                  // lineNumbers: true,
+                  // foldOptions: true,
+                  // foldGutter: true,
+                  // gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"],
                 }}
                 onBeforeChange={(editor, data, value) => {
                   setInput(value);
                 }}
               />
             </Grid>
-            <Grid
-              item
-              sm={12}
-              style={{ width: "414.5px", border: "4px solid black" }}
-            >
+            <Grid item xs={12} sm={12} style={{ border: "4px solid black" }}>
               <CodeMirror //output
                 name="code"
                 value={output}
                 editorDidMount={(editor) => {
-                  editor.setSize("", "232px");
+                  editor.setSize("", "40vh");
                 }}
                 options={{
                   mode: "text/x-c++src",
                   theme: theme2,
-                  lineNumbers: true,
-                  gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"],
+                  // lineNumbers: true,
+                  // gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"],
                   // matchBrackets: true,
                   // autoCloseBrackets: true,
                 }}
               />
             </Grid>
           </Grid>
-          <Grid item sm={12}>
+          <Grid
+            item
+            xs={12}
+            sm={12}
+            style={{ border: "2px solid black", height: "46px" }}
+          >
             <Button
               style={{
                 width: "100%",
-                height: "7.5vh",
+                height: "100%",
                 margin: "0px",
                 borderRadius: "0px",
               }}
@@ -364,6 +367,7 @@ function CodeIO() {
             Run
           </Button>
         </Grid>
+        width: "414.5px",
       </Grid> */}
     </div>
   );

@@ -37,89 +37,93 @@ const MenuBar = ({ handleLanguage, handleReset, handleTheme }) => {
   const [theme, setTheme] = useState("material");
 
   return (
-    <AppBar position="static" color="secondary">
-      <Toolbar variant="dense">
-        <Grid container>
-          <Grid item container justify="flex-start">
-            <Grid
-              item
-              style={{
-                marginTop: "5px",
-                height: "40px",
+    <AppBar
+      position="static"
+      color="secondary"
+      style={{ width: "100%", height: "100%" }}
+    >
+      {/* <Toolbar style={{ height: "10px" }}> */}
+      <Grid container style={{ padding: "0px 10px" }}>
+        <Grid
+          item
+          style={{
+            marginTop: "5px",
+            height: "30px",
+          }}
+        >
+          <FormControl
+            variant="outlined"
+            style={{
+              width: "170px",
+              height: "30px",
+              borderRadius: "4px",
+              backgroundColor: "white",
+            }}
+          >
+            <Select
+              style={{ height: "30px", padding: "0px !important" }}
+              value={lang}
+              label="C++"
+              onChange={(e) => {
+                setLang(e.target.value);
+                handleLanguage(e.target.value);
               }}
             >
-              <FormControl
-                variant="outlined"
-                style={{
-                  width: "170px",
-                  height: "30px",
-                  borderRadius: "4px",
-                  backgroundColor: "white",
-                }}
-              >
-                <Select
-                  style={{ height: "30px", padding: "0px !important" }}
-                  value={lang}
-                  // labelId="demo-simple-select-outlined-label"
-                  // id="demo-simple-select-outlined"
-                  label="C++"
-                  onChange={(e) => {
-                    setLang(e.target.value);
-                    handleLanguage(e.target.value);
-                  }}
-                >
-                  <MenuItem value={54}>
-                    <em>C++</em>
-                  </MenuItem>
-                  <MenuItem value={71}>
-                    <em>Python</em>
-                  </MenuItem>
-                  {/* <MenuItem value={62}>
-                    <em>Java</em>
-                  </MenuItem>
-                  <MenuItem value={63}>
-                    <em>Javascript</em>
-                  </MenuItem> */}
-                </Select>
-              </FormControl>
-            </Grid>
-            <Grid item style={{ margin: "5px 0px 0px 30px" }}>
-              <Button
-                onClick={() => {
-                  handleReset(true);
-                }}
-                variant="contained"
-                color="primary"
-              >
-                Reset
-              </Button>
-            </Grid>
-            <Grid item style={{ margin: "5px 0px 5px 30px" }}>
-              <Button
-                onClick={() => {
-                  setTheme((prev) => {
-                    if (prev === "material") {
-                      return "neat";
-                    } else {
-                      return "material";
-                    }
-                  });
-                  handleTheme(theme);
-                }}
-              >
-                <Brightness7Icon />
-              </Button>
-            </Grid>
-            <Grid item style={{ margin: "5px 0px 5px 30px" }}>
-              <Button>
-                <SubjectIcon />
-              </Button>
-            </Grid>
-          </Grid>
+              <MenuItem value={54}>
+                <em>C++</em>
+              </MenuItem>
+              <MenuItem value={71}>
+                <em>Python</em>
+              </MenuItem>
+            </Select>
+          </FormControl>
         </Grid>
-      </Toolbar>
+        <Grid item style={{ margin: "5px 0px 0px 30px", height: "30px" }}>
+          <Button
+            onClick={() => {
+              handleReset(true);
+            }}
+            variant="contained"
+            color="primary"
+            style={{ height: "30px" }}
+          >
+            Reset
+          </Button>
+        </Grid>
+        <Grid item style={{ margin: "0px 0px 5px 30px", height: "30px" }}>
+          <Button
+            onClick={() => {
+              setTheme((prev) => {
+                if (prev === "material") {
+                  return "neat";
+                } else {
+                  return "material";
+                }
+              });
+              handleTheme(theme);
+            }}
+          >
+            <Brightness7Icon />
+          </Button>
+        </Grid>
+        <Grid item style={{ margin: "0px 0px 5px 30px", height: "30px" }}>
+          <Button>
+            <SubjectIcon />
+          </Button>
+        </Grid>
+      </Grid>
+      {/* </Toolbar> */}
     </AppBar>
   );
 };
 
 export default MenuBar;
+
+{
+  /* <MenuItem value={62}>
+                    <em>Java</em>
+                  </MenuItem>
+                  <MenuItem value={63}>
+                    <em>Javascript</em>
+                  </MenuItem> */
+}
