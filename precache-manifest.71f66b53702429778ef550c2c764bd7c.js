@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "c7cc02fbecaf1cb41a5b22d2c2f7bdad",
+    "revision": "9a699d376594344ca81b74ea48440ecb",
     "url": "/CodeIO-IDE/index.html"
   },
   {
