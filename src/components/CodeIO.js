@@ -8,7 +8,6 @@ import Button from "@material-ui/core/Button";
 import copy from "copy-to-clipboard";
 import MenuBar from "./MenuBar";
 import "./CodeIO.css";
-import "../script";
 require("codemirror/lib/codemirror.css");
 require("codemirror/theme/material.css");
 require("codemirror/theme/material-ocean.css");
