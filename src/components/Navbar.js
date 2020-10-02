@@ -21,7 +21,13 @@ const Navbar = () => {
   const classes = useStyles();
   return (
     <div className={classes.root}>
-      <AppBar position="static" style={{ textAlign: "center" }}>
+      <AppBar
+        position="static"
+        style={{
+          textAlign: "center",
+          background: "linear-gradient(45deg, #171515, #7e1111)",
+        }}
+      >
         <Toolbar variant="dense" style={{ textAlign: "center" }}>
           {/* <IconButton
             edge="start"

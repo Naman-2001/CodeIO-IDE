@@ -9,7 +9,48 @@
 .CodeMirror-input {
   height: 300vh !important;
 } */
+.shadow {
+  /* background-color: #fb0094; */
+  /* margin: 200px auto 0; */
+  width: 10px;
+  position: relative;
+  height: 46px;
+  /* margin: 200px auto 0; */
+}
 
-.CodeMirror-gutters {
-  background-color: #354953 !important;
+.shadow:before {
+  content: "";
+  position: absolute;
+  /* top: -2px;
+  left: -2px; */
+  background: linear-gradient(
+    45deg,
+    #fb0094,
+    #0000ff,
+    #00ff00,
+    #ffff00,
+    #ff0000,
+    #fb0094,
+    #0000ff,
+    #00ff00,
+    #ffff00,
+    #ff0000
+  );
+  background-size: 400%;
+  width: 100%;
+  height: 100%;
+  z-index: 10000;
+  animation: animate 20s linear infinite;
+}
+
+@keyframes animate {
+  0% {
+    background-position: 0 0;
+  }
+  50% {
+    background-position: 300% 0;
+  }
+  100% {
+    background-position: 0 0;
+  }
 }

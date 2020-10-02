@@ -8,9 +8,10 @@ import Button from "@material-ui/core/Button";
 import copy from "copy-to-clipboard";
 import MenuBar from "./MenuBar";
 import "./CodeIO.css";
-
+import "../script";
 require("codemirror/lib/codemirror.css");
 require("codemirror/theme/material.css");
+require("codemirror/theme/material-ocean.css");
 require("codemirror/theme/neat.css");
 require("codemirror/mode/xml/xml.js");
 require("codemirror/mode/clike/clike.js");
@@ -36,7 +37,7 @@ function CodeIO() {
   const [input, setInput] = useState("");
   const [lang, setLang] = useState("C++");
   const [reset, setReset] = useState(false);
-  const [theme2, setTheme] = useState("material");
+  const [theme2, setTheme] = useState("material-ocean");
 
   const handleSubmitCode = () => {
     const source = `${code}`;
@@ -298,17 +299,22 @@ function CodeIO() {
             item
             xs={12}
             sm={12}
-            style={{ border: "2px solid black", height: "46px" }}
+            className="shadow"
+            // style={{ height: "46px" }}
           >
             <Button
               style={{
-                width: "100%",
-                height: "100%",
-                margin: "0px",
+                width: "98%",
+                height: "80%",
+                margin: "4px",
                 borderRadius: "0px",
+                zIndex: "1000000000",
+                color: "white",
+                background:
+                  "linear-gradient(45deg,rgb(0 0 0 / 64%), rgb(18 16 24 / 97%))",
               }}
               variant="contained"
-              color="primary"
+              // color="primary"
               onClick={handleSubmitCode}
             >
               Run
@@ -316,59 +322,6 @@ function CodeIO() {
           </Grid>
         </Grid>
       </Grid>
-
-      {/* <Grid container style={{ padding: "20px" }}>
-        <Grid item container sm={6} justify="center">
-          <Grid item style={{ width: "500px" }}>
-            <CodeMirror //input
-              name="code"
-              value={input}
-              options={{
-                mode: "text/x-c++src",
-                theme: theme2,
-                lineNumbers: true,
-                foldOptions: true,
-                foldGutter: true,
-                gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"],
-              }}
-              onBeforeChange={(editor, data, value) => {
-                setInput(value);
-              }}
-            />
-          </Grid>
-          <Button
-            variant="contained"
-            color="primary"
-            onClick={handleSubmitCode}
-            style={{ width: "70px" }}
-          >
-            Compile
-          </Button>
-        </Grid>
-        <Grid item container sm={6} justify="center">
-          <Grid item style={{ width: "500px" }}>
-            <CodeMirror //output
-              name="code"
-              value={output}
-              options={{
-                mode: "text/x-c++src",
-                theme: theme2,
-                lineNumbers: true,
-              }}
-            />
-          </Grid>
-
-          <Button
-            style={{ width: "70px" }}
-            variant="contained"
-            color="primary"
-            onClick={handleSubmit}
-          >
-            Run
-          </Button>
-        </Grid>
-        width: "414.5px",
-      </Grid> */}
     </div>
   );
 }

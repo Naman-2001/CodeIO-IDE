@@ -2,7 +2,7 @@ import React from "react";
 import "./App.css";
 import CodeIO from "./components/CodeIO";
 import Navbar from "./components/Navbar";
-
+// import "./script";
 const App = () => {
   return (
     <div>

@@ -34,13 +34,17 @@ const MenuBar = ({ handleLanguage, handleReset, handleTheme }) => {
   const classes = useStyles();
 
   const [lang, setLang] = useState("C++");
-  const [theme, setTheme] = useState("material");
+  const [theme, setTheme] = useState("material-ocean");
 
   return (
     <AppBar
       position="static"
-      color="secondary"
-      style={{ width: "100%", height: "100%" }}
+      // color="secondary"
+      style={{
+        width: "100%",
+        height: "100%",
+        background: "linear-gradient(45deg,rgb(232 19 19 / 95%), rgb(0 0 0))",
+      }}
     >
       {/* <Toolbar style={{ height: "10px" }}> */}
       <Grid container style={{ padding: "0px 10px" }}>
@@ -94,10 +98,10 @@ const MenuBar = ({ handleLanguage, handleReset, handleTheme }) => {
           <Button
             onClick={() => {
               setTheme((prev) => {
-                if (prev === "material") {
+                if (prev === "material-ocean") {
                   return "neat";
                 } else {
-                  return "material";
+                  return "material-ocean";
                 }
               });
               handleTheme(theme);
