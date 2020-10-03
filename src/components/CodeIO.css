@@ -54,3 +54,22 @@
     background-position: 0 0;
   }
 }
+
+.cm-matchhighlight {
+  background-color: rgb(255 255 255 / 20%);
+  opacity: 0.7;
+}
+
+.CodeMirror-selection-highlight-scrollbar {
+  background-color: rgb(227, 238, 227);
+}
+
+.CodeMirror-activeline-background {
+  background-color: #134666 !important;
+}
+.CodeMirror-activeline .CodeMirror-linenumber {
+  background-color: #003251 !important;
+}
+.CodeMirror-focused .CodeMirror-activeline .CodeMirror-gutter-elt {
+  background: #003251;
+}

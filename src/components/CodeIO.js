@@ -10,6 +10,12 @@ import MenuBar from "./MenuBar";
 import "./CodeIO.css";
 require("codemirror/lib/codemirror.css");
 require("codemirror/theme/material.css");
+require("codemirror/addon/selection/active-line");
+require("codemirror/addon/search/match-highlighter");
+require("codemirror/addon/scroll/annotatescrollbar.js");
+require("codemirror/addon/search/matchesonscrollbar.js");
+require("codemirror/addon/search/searchcursor.js");
+require("codemirror/addon/search/match-highlighter.js");
 require("codemirror/theme/material-ocean.css");
 require("codemirror/theme/neat.css");
 require("codemirror/mode/xml/xml.js");
@@ -64,7 +70,7 @@ function CodeIO() {
         setToken(response.data.token);
         setTimeout(() => {
           handleSubmit(response.data.token);
-        }, 5000);
+        }, 3000);
       })
       .catch((error) => {
         console.log(error);
@@ -87,7 +93,7 @@ function CodeIO() {
           let str = res.data.compile_output;
           console.log(base64.decode(str));
           setOutput(base64.decode(str));
-        } else {
+        } else if (res.data.stdout) {
           setOutput(atob(res.data.stdout));
         }
       })
@@ -184,7 +190,11 @@ function CodeIO() {
             item
             xs={12}
             sm={12}
-            style={{ height: "85vh", border: "4px solid black" }}
+            style={{
+              height: "85vh",
+              border: "4px solid black",
+              fontSize: "15px",
+            }}
           >
             <CodeMirror //code
               id="textarea"
@@ -201,7 +211,13 @@ function CodeIO() {
                 lineNumbers: true,
                 lineWrapping: true,
                 matchBrackets: true,
+                styleActiveLine: { nonEmpty: true },
+                styleActiveSelected: true,
                 smartIndent: true,
+                highlightSelectionMatches: {
+                  showToken: /\w/,
+                  annotateScrollbar: true,
+                },
                 autoCloseBrackets: true,
                 extraKeys: {
                   "Ctrl-Q": function (cm) {
@@ -316,7 +332,7 @@ function CodeIO() {
               // color="primary"
               onClick={handleSubmitCode}
             >
-              Run
+              Compile And Run
             </Button>
           </Grid>
         </Grid>

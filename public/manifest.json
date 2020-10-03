@@ -13,8 +13,7 @@
       "sizes": "512x512"
     }
   ],
-  "scope": ".",
-  "start_url": "/",
+  "start_url": "https://naman-2001.github.io/CodeIO-IDE/",
   "display": "standalone",
   "theme_color": "#000000",
   "background_color": "#ffffff"
