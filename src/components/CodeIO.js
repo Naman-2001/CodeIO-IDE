@@ -52,18 +52,23 @@ function CodeIO() {
     if (!codeMirrorRef.current) return;
 
     // A Yjs document holds the shared data
+
     const ydoc = new Y.Doc({
       meta: {
         cellId: 1,
       },
     });
 
-    const wsProvider = new WebsocketProvider("ws://localhost:1234", 1, ydoc);
+    const wsProvider = new WebsocketProvider(
+      "ws://192.168.42.51:1234",
+      1,
+      ydoc
+    );
     // Define a shared text type on the document
     const yText = ydoc.getText(`codemirror`);
-
+    var person = prompt("Please enter your name");
     wsProvider.awareness.setLocalStateField("user", {
-      name: "naman",
+      name: person,
       color: "#008833",
     });
 
