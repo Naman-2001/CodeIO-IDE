@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import Grid from "@material-ui/core/Grid";
 import axios from "axios";
 import { Controlled as CodeMirror } from "react-codemirror2";
@@ -7,6 +7,9 @@ import { Typography } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import copy from "copy-to-clipboard";
 import MenuBar from "./MenuBar";
+import * as Y from "yjs";
+import { WebsocketProvider } from "y-websocket";
+import { CodemirrorBinding } from "y-codemirror";
 import "./CodeIO.css";
 require("codemirror/lib/codemirror.css");
 require("codemirror/theme/material.css");
@@ -43,6 +46,41 @@ function CodeIO() {
   const [lang, setLang] = useState("C++");
   const [reset, setReset] = useState(false);
   const [theme2, setTheme] = useState("material-ocean");
+  const codeMirrorRef = useRef();
+
+  useEffect(() => {
+    if (!codeMirrorRef.current) return;
+
+    // A Yjs document holds the shared data
+    const ydoc = new Y.Doc({
+      meta: {
+        cellId: 1,
+      },
+    });
+
+    const wsProvider = new WebsocketProvider("ws://localhost:1234", 1, ydoc);
+    // Define a shared text type on the document
+    const yText = ydoc.getText(`codemirror`);
+
+    wsProvider.awareness.setLocalStateField("user", {
+      name: "naman",
+      color: "#008833",
+    });
+
+    let status;
+
+    wsProvider.on("status", (event) => {
+      console.log(event.status); // logs "connected" or "disconnected"
+      status = event.status;
+      if (event.status == "connected") {
+        const _codemirrorBinding = new CodemirrorBinding(
+          yText,
+          codeMirrorRef.current,
+          wsProvider.awareness
+        );
+      }
+    });
+  }, []);
 
   const handleSubmitCode = () => {
     const source = `${code}`;
@@ -201,6 +239,7 @@ function CodeIO() {
               // value={reset ? " " : { code }}
               value={code}
               editorDidMount={(editor) => {
+                codeMirrorRef.current = editor;
                 editor.setSize("", "83.7vh");
               }}
               options={{
