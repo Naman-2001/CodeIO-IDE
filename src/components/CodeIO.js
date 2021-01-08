@@ -60,7 +60,7 @@ function CodeIO() {
     });
 
     const wsProvider = new WebsocketProvider(
-      "ws://192.168.42.51:1234",
+      "ws://0a4b46d919d9.ngrok.io",
       1,
       ydoc
     );
