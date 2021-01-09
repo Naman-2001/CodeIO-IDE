@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const MenuBar = ({ handleLanguage, handleReset, handleTheme }) => {
+const MenuBar = ({ handleLanguage, handleReset, handleTheme, users }) => {
   const classes = useStyles();
 
   const [lang, setLang] = useState("C++");
@@ -115,6 +115,9 @@ const MenuBar = ({ handleLanguage, handleReset, handleTheme }) => {
             <SubjectIcon />
           </Button>
         </Grid>
+        {users.map((user) => {
+          return <div>{user}</div>;
+        })}
       </Grid>
       {/* </Toolbar> */}
     </AppBar>

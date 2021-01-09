@@ -46,6 +46,8 @@ function CodeIO() {
   const [lang, setLang] = useState("C++");
   const [reset, setReset] = useState(false);
   const [theme2, setTheme] = useState("material-ocean");
+
+  const [users, setUsers] = useState([]);
   const codeMirrorRef = useRef();
 
   useEffect(() => {
@@ -60,14 +62,17 @@ function CodeIO() {
     });
 
     const wsProvider = new WebsocketProvider(
-      "ws://codeio-backend.herokuapp.com/",
+      "wss://codeio-backend.herokuapp.com/",
       1,
       ydoc
     );
+
+    const awareness = wsProvider.awareness;
     // Define a shared text type on the document
     const yText = ydoc.getText(`codemirror`);
     var person = prompt("Please enter your name");
-    wsProvider.awareness.setLocalStateField("user", {
+
+    awareness.setLocalStateField("user", {
       name: person,
       color: "#008833",
     });
@@ -84,6 +89,19 @@ function CodeIO() {
           wsProvider.awareness
         );
       }
+    });
+    awareness.on("change", () => {
+      setUsers([]);
+      awareness.getStates().forEach((state) => {
+        if (state.user) {
+          console.log(state.user.name);
+          setUsers((prev) => {
+            return [...prev, state.user.name];
+          });
+        }
+      });
+      // console.log(awareness.getStates());
+      // setUsers(awareness.getStates().entries);
     });
   }, []);
 
@@ -310,6 +328,7 @@ function CodeIO() {
               handleLanguage={handleLanguage}
               handleReset={handleReset}
               handleTheme={handleTheme}
+              users={users}
             />
           </Grid>
         </Grid>
