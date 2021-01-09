@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "4a43a599b288deef8d2f94a6f29a3d1f",
+    "revision": "1e8b90b4b0195c6b7d01039a06dad3f2",
     "url": "/CodeIO-IDE/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/CodeIO-IDE/static/css/2.283c9e2d.chunk.css"
   },
   {
-    "revision": "bc5184f5649c06d8e92a",
+    "revision": "46dbdc32dd8194758615",
     "url": "/CodeIO-IDE/static/css/main.90df4f9a.chunk.css"
   },
   {
@@ -20,8 +20,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/CodeIO-IDE/static/js/2.2d51c11f.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "bc5184f5649c06d8e92a",
-    "url": "/CodeIO-IDE/static/js/main.ad24b81f.chunk.js"
+    "revision": "46dbdc32dd8194758615",
+    "url": "/CodeIO-IDE/static/js/main.a7080d40.chunk.js"
   },
   {
     "revision": "8a2b91c8676b94dc7adc",
