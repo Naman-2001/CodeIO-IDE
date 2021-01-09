@@ -60,7 +60,7 @@ function CodeIO() {
     });
 
     const wsProvider = new WebsocketProvider(
-      "ws://0a4b46d919d9.ngrok.io",
+      "ws://codeio-backend.herokuapp.com/",
       1,
       ydoc
     );
