@@ -4,7 +4,7 @@ import CodeIO from "./components/CodeIO";
 import Navbar from "./components/Navbar";
 const App = () => {
   return (
-    <div>
+    <div style={{ height: "100%" }}>
       <Navbar />
       <CodeIO />
     </div>

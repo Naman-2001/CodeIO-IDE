@@ -1,5 +1,6 @@
 body {
   background-color: grey;
+  height: 100vh;
 }
 
 ::-webkit-scrollbar-track {

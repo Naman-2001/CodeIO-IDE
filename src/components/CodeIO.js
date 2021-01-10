@@ -237,22 +237,22 @@ function CodeIO() {
   };
 
   return (
-    <div style={{ width: "100%", height: "560px" }}>
+    <div style={{ width: "100%", height: "95vh" }}>
       <Grid
         container
         style={{
-          height: "560px",
+          height: "100%",
           width: "100%",
           // padding: "20px",
         }}
       >
-        <Grid item container xs={12} sm={8}>
+        <Grid item container xs={12} sm={8} style={{ height: "100%" }}>
           <Grid
             item
             xs={12}
             sm={12}
             style={{
-              height: "85vh",
+              height: "90%",
               border: "4px solid black",
               fontSize: "15px",
             }}
@@ -263,7 +263,7 @@ function CodeIO() {
               value={code}
               editorDidMount={(editor) => {
                 codeMirrorRef.current = editor;
-                editor.setSize("", "83.7vh");
+                editor.setSize("", "100%");
               }}
               options={{
                 mode:
@@ -322,7 +322,7 @@ function CodeIO() {
             item
             xs={12}
             sm={12}
-            style={{ height: "46px", border: "2px solid black" }}
+            style={{ height: "10%", border: "2px solid black" }}
           >
             <MenuBar
               handleLanguage={handleLanguage}
@@ -333,14 +333,26 @@ function CodeIO() {
           </Grid>
         </Grid>
 
-        <Grid item container xs={12} sm={4} spacing={0}>
-          <Grid item container style={{ height: "85vh" }}>
-            <Grid item xs={12} sm={12} style={{ border: "4px solid black" }}>
+        <Grid
+          item
+          container
+          xs={12}
+          sm={4}
+          spacing={0}
+          style={{ height: "100%" }}
+        >
+          <Grid item container style={{ height: "90%" }}>
+            <Grid
+              item
+              xs={12}
+              sm={12}
+              style={{ height: "50%", border: "4px solid black" }}
+            >
               <CodeMirror //input
                 name="code"
                 value={input}
                 editorDidMount={(editor) => {
-                  editor.setSize("", "42vh");
+                  editor.setSize("", "100%");
                 }}
                 options={{
                   mode: "text/x-c++src",
@@ -355,12 +367,17 @@ function CodeIO() {
                 }}
               />
             </Grid>
-            <Grid item xs={12} sm={12} style={{ border: "4px solid black" }}>
+            <Grid
+              item
+              xs={12}
+              sm={12}
+              style={{ height: "50%", border: "4px solid black" }}
+            >
               <CodeMirror //output
                 name="code"
                 value={output}
                 editorDidMount={(editor) => {
-                  editor.setSize("", "40vh");
+                  editor.setSize("", "100%");
                 }}
                 options={{
                   mode: "text/x-c++src",
@@ -378,13 +395,13 @@ function CodeIO() {
             xs={12}
             sm={12}
             className="shadow"
-            // style={{ height: "46px" }}
+            style={{ height: "10%" }}
           >
             <Button
               style={{
                 width: "98%",
                 height: "80%",
-                margin: "4px",
+                margin: "8px 5px",
                 borderRadius: "0px",
                 zIndex: "1000000000",
                 color: "white",

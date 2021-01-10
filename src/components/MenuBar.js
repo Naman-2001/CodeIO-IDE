@@ -47,7 +47,15 @@ const MenuBar = ({ handleLanguage, handleReset, handleTheme, users }) => {
       }}
     >
       {/* <Toolbar style={{ height: "10px" }}> */}
-      <Grid container style={{ padding: "0px 10px" }}>
+      <Grid
+        container
+        style={{
+          padding: "0px 10px",
+          height: "100%",
+          display: "flex",
+          alignItems: "center",
+        }}
+      >
         <Grid
           item
           style={{
