@@ -54,6 +54,7 @@ const MenuBar = ({ handleLanguage, handleReset, handleTheme, users }) => {
           height: "100%",
           display: "flex",
           alignItems: "center",
+          position: "relative",
         }}
       >
         <Grid
@@ -123,9 +124,35 @@ const MenuBar = ({ handleLanguage, handleReset, handleTheme, users }) => {
             <SubjectIcon />
           </Button>
         </Grid>
-        {users.map((user) => {
-          return <div>{user}</div>;
-        })}
+        <Grid
+          item
+          style={{
+            margin: "0px 0px 5px 30px",
+            display: "flex",
+            position: "absolute",
+            right: "10px",
+          }}
+        >
+          {users.map((user) => {
+            return (
+              <div
+                style={{
+                  color: "black",
+                  fontSize: "1.7rem",
+                  background: user.color,
+                  width: "40px",
+                  height: "40px",
+                  borderRadius: "50%",
+                  border: "2px solid white",
+                  margin: "10px",
+                  textAlign: "center",
+                }}
+              >
+                {user.name && user.name.slice(0, 1)}
+              </div>
+            );
+          })}
+        </Grid>
       </Grid>
       {/* </Toolbar> */}
     </AppBar>

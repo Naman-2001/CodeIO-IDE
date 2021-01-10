@@ -10,6 +10,7 @@ import MenuBar from "./MenuBar";
 import * as Y from "yjs";
 import { WebsocketProvider } from "y-websocket";
 import { CodemirrorBinding } from "y-codemirror";
+import randomcolor from "randomcolor";
 import "./CodeIO.css";
 require("codemirror/lib/codemirror.css");
 require("codemirror/theme/material.css");
@@ -70,11 +71,18 @@ function CodeIO() {
     const awareness = wsProvider.awareness;
     // Define a shared text type on the document
     const yText = ydoc.getText(`codemirror`);
-    var person = prompt("Please enter your name");
+    var person = prompt(
+      "Please enter your name",
+      Math.floor(Math.random() * 10) + "User"
+    );
+
+    if (person === " ") {
+      person = Math.floor(Math.random() * 10) + "User";
+    }
 
     awareness.setLocalStateField("user", {
       name: person,
-      color: "#008833",
+      color: randomcolor(),
     });
 
     let status;
@@ -94,9 +102,9 @@ function CodeIO() {
       setUsers([]);
       awareness.getStates().forEach((state) => {
         if (state.user) {
-          console.log(state.user.name);
+          console.log(state.user);
           setUsers((prev) => {
-            return [...prev, state.user.name];
+            return [...prev, state.user];
           });
         }
       });
