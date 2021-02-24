@@ -12,6 +12,8 @@ import Select from "@material-ui/core/Select";
 import { Button } from "@material-ui/core";
 import Brightness7Icon from "@material-ui/icons/Brightness7";
 import SubjectIcon from "@material-ui/icons/Subject";
+import WifiIcon from "@material-ui/icons/Wifi";
+import WifiOffIcon from "@material-ui/icons/WifiOff";
 import { makeStyles } from "@material-ui/core/styles";
 import "../App.css";
 const useStyles = makeStyles((theme) => ({
@@ -30,7 +32,14 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const MenuBar = ({ handleLanguage, handleReset, handleTheme, users }) => {
+const MenuBar = ({
+  handleLanguage,
+  handleReset,
+  handleTheme,
+  users,
+  conState,
+  handleConnection,
+}) => {
   const classes = useStyles();
 
   const [lang, setLang] = useState("C++");
@@ -124,6 +133,18 @@ const MenuBar = ({ handleLanguage, handleReset, handleTheme, users }) => {
             <SubjectIcon />
           </Button>
         </Grid>
+        <Grid item style={{ margin: "0px 0px 5px 30px", height: "30px" }}>
+          {conState === "connected" ? (
+            <Button onClick={() => handleConnection("disconnected")}>
+              <WifiIcon />
+            </Button>
+          ) : (
+            <Button onClick={() => handleConnection("connected")}>
+              <WifiOffIcon />
+            </Button>
+          )}
+        </Grid>
+
         <Grid
           item
           style={{
@@ -146,6 +167,9 @@ const MenuBar = ({ handleLanguage, handleReset, handleTheme, users }) => {
                   border: "2px solid white",
                   margin: "10px",
                   textAlign: "center",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
                 }}
               >
                 {user.name && user.name.slice(0, 1)}

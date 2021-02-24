@@ -47,28 +47,28 @@ function CodeIO() {
   const [lang, setLang] = useState("C++");
   const [reset, setReset] = useState(false);
   const [theme2, setTheme] = useState("material-ocean");
+  const [conState, setConstate] = useState("connected");
 
   const [users, setUsers] = useState([]);
   const codeMirrorRef = useRef();
+  let wsProvider = useRef();
 
   useEffect(() => {
     if (!codeMirrorRef.current) return;
 
     // A Yjs document holds the shared data
-
     const ydoc = new Y.Doc({
       meta: {
         cellId: 1,
       },
     });
 
-    const wsProvider = new WebsocketProvider(
+    wsProvider.current = new WebsocketProvider(
       "wss://codeio-backend.herokuapp.com/",
       1,
       ydoc
     );
-
-    const awareness = wsProvider.awareness;
+    const awareness = wsProvider.current.awareness;
     // Define a shared text type on the document
     const yText = ydoc.getText(`codemirror`);
     var person = prompt(
@@ -87,14 +87,14 @@ function CodeIO() {
 
     let status;
 
-    wsProvider.on("status", (event) => {
+    wsProvider.current.on("status", (event) => {
       console.log(event.status); // logs "connected" or "disconnected"
       status = event.status;
       if (event.status == "connected") {
         const _codemirrorBinding = new CodemirrorBinding(
           yText,
           codeMirrorRef.current,
-          wsProvider.awareness
+          wsProvider.current.awareness
         );
       }
     });
@@ -240,6 +240,15 @@ function CodeIO() {
   //   }
   // };
 
+  const handleConnection = (state) => {
+    setConstate(state);
+    if (state === "disconnected") {
+      wsProvider.current.disconnect();
+    } else if (state === "connected") {
+      wsProvider.current.connect();
+    }
+  };
+
   const handleNewTab = () => {
     window.open("https://localhost:300", "_blank");
   };
@@ -307,6 +316,7 @@ function CodeIO() {
                 setCode(value);
               }}
             />
+
             {/* <button
               style={{
                 // position: "absolute",
@@ -337,6 +347,8 @@ function CodeIO() {
               handleReset={handleReset}
               handleTheme={handleTheme}
               users={users}
+              conState={conState}
+              handleConnection={handleConnection}
             />
           </Grid>
         </Grid>
