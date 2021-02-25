@@ -11,6 +11,7 @@ import * as Y from "yjs";
 import { WebsocketProvider } from "y-websocket";
 import { CodemirrorBinding } from "y-codemirror";
 import randomcolor from "randomcolor";
+import SaveIcon from "@material-ui/icons/Save";
 import "./CodeIO.css";
 require("codemirror/lib/codemirror.css");
 require("codemirror/theme/material.css");
@@ -39,7 +40,11 @@ require("codemirror/addon/fold/xml-fold.js");
 require("codemirror/addon/comment/comment.js");
 var base64 = require("base-64");
 
-function CodeIO() {
+function CodeIO(props) {
+  const {
+    match: { params },
+  } = props;
+
   const [code, setCode] = useState("");
   const [token, setToken] = useState("");
   const [output, setOutput] = useState("See Output Here");
@@ -64,7 +69,8 @@ function CodeIO() {
     });
 
     wsProvider.current = new WebsocketProvider(
-      "wss://codeio-backend.herokuapp.com/",
+      // "wss://codeio-backend.herokuapp.com/",
+      "ws://localhost:8000",
       1,
       ydoc
     );
@@ -240,6 +246,26 @@ function CodeIO() {
   //   }
   // };
 
+  const handleSave = () => {
+    console.log(code);
+    console.log(params.id, params.roomid);
+    axios({
+      method: "PATCH",
+      url: "http://localhost:8000/room/save",
+      data: {
+        id: params.id,
+        roomid: params.roomid,
+        content: code,
+      },
+    })
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   const handleConnection = (state) => {
     setConstate(state);
     if (state === "disconnected") {
@@ -272,6 +298,7 @@ function CodeIO() {
               height: "90%",
               border: "4px solid black",
               fontSize: "15px",
+              position: "relative",
             }}
           >
             <CodeMirror //code
@@ -316,7 +343,18 @@ function CodeIO() {
                 setCode(value);
               }}
             />
-
+            <Button
+              onClick={handleSave}
+              style={{
+                position: "absolute",
+                bottom: "15px",
+                color: "white",
+                zIndex: 100,
+                right: "0px",
+              }}
+            >
+              <SaveIcon />{" "}
+            </Button>
             {/* <button
               style={{
                 // position: "absolute",
