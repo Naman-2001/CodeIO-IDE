@@ -69,9 +69,9 @@ function CodeIO(props) {
     });
 
     wsProvider.current = new WebsocketProvider(
-      // "wss://codeio-backend.herokuapp.com/",
-      "ws://localhost:8000",
-      1,
+      "wss://codeio-backend.herokuapp.com/",
+      // "ws://localhost:8000",
+      params.id,
       ydoc
     );
     const awareness = wsProvider.current.awareness;
@@ -114,8 +114,6 @@ function CodeIO(props) {
           });
         }
       });
-      // console.log(awareness.getStates());
-      // setUsers(awareness.getStates().entries);
     });
   }, []);
 
@@ -251,7 +249,7 @@ function CodeIO(props) {
     console.log(params.id, params.roomid);
     axios({
       method: "PATCH",
-      url: "http://localhost:8000/room/save",
+      url: "https://codeio-backend.herokuapp.com/room/save",
       data: {
         id: params.id,
         roomid: params.roomid,

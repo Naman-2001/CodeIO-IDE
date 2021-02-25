@@ -16,7 +16,8 @@ const Home = () => {
   const handleCreate = () => {
     Axios({
       method: "POST",
-      url: "http://localhost:8000/room/createroom",
+      // url: "http://localhost:8000/room/createroom",
+      url: "https://codeio-backend.herokuapp.com/room/createroom",
       data: {
         email,
       },
