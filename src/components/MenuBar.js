@@ -128,11 +128,11 @@ const MenuBar = ({
             <Brightness7Icon />
           </Button>
         </Grid>
-        <Grid item style={{ margin: "0px 0px 5px 30px", height: "30px" }}>
+        {/* <Grid item style={{ margin: "0px 0px 5px 30px", height: "30px" }}>
           <Button>
             <SubjectIcon />
           </Button>
-        </Grid>
+        </Grid> */}
         <Grid item style={{ margin: "0px 0px 5px 30px", height: "30px" }}>
           {conState === "connected" ? (
             <Button onClick={() => handleConnection("disconnected")}>

@@ -125,10 +125,10 @@ function CodeIO(props) {
 
     axios({
       method: "POST",
-      url: `https://judge0.p.rapidapi.com/submissions`,
+      url: `https://judge0-ce.p.rapidapi.com/submissions`,
       headers: {
         "content-type": "application/json",
-        "x-rapidapi-host": "judge0.p.rapidapi.com",
+        "x-rapidapi-host": "judge0-ce.p.rapidapi.com",
         "x-rapidapi-key": "7b3dddefe1msheb8ab51a9e386f1p114d8ejsn6f6d49dd4d69",
         accept: "application/json",
         useQueryString: true,
@@ -139,9 +139,9 @@ function CodeIO(props) {
         stdin: inp,
       },
     })
-      .then((response) => {
+      .then(async (response) => {
         console.log(response.data);
-        setToken(response.data.token);
+        await setToken(response.data.token);
         setTimeout(() => {
           handleSubmit(response.data.token);
         }, 3000);
@@ -154,13 +154,14 @@ function CodeIO(props) {
   const handleSubmit = (token) => {
     axios({
       method: "GET",
-      url: `https://judge0.p.rapidapi.com/submissions/${token}?base64_encoded=true`,
+      url: `https://judge0-ce.p.rapidapi.com/submissions/${token}`,
       headers: {
-        "content-type": "application/octet-stream",
-        "x-rapidapi-host": "judge0.p.rapidapi.com",
-        "x-rapidapi-key": `0e3af1fc74mshad035c1ca88d824p139da6jsn8ab4b4057169`,
+        // "content-type": "application/octet-stream",
+        "x-rapidapi-host": "judge0-ce.p.rapidapi.com",
+        "x-rapidapi-key": `7b3dddefe1msheb8ab51a9e386f1p114d8ejsn6f6d49dd4d69`,
         useQueryString: true,
       },
+      params: { base64_encoded: "true", fields: "*" },
     })
       .then((res) => {
         if (res.data.compile_output) {
@@ -399,7 +400,7 @@ function CodeIO(props) {
               id="myInput"
               rows="3"
               value={note}
-              style={{ height: "91%", width: "96%" }}
+              style={{ height: "91%", width: "94%" }}
               onChange={(e) => setNote(e.target.value)}
             ></textarea>
             <Button
