@@ -12,6 +12,7 @@ import { WebsocketProvider } from "y-websocket";
 import { CodemirrorBinding } from "y-codemirror";
 import randomcolor from "randomcolor";
 import SaveIcon from "@material-ui/icons/Save";
+import GetAppIcon from "@material-ui/icons/GetApp";
 import "./CodeIO.css";
 require("codemirror/lib/codemirror.css");
 require("codemirror/theme/material.css");
@@ -53,7 +54,7 @@ function CodeIO(props) {
   const [reset, setReset] = useState(false);
   const [theme2, setTheme] = useState("material-ocean");
   const [conState, setConstate] = useState("connected");
-
+  const [note, setNote] = useState("");
   const [users, setUsers] = useState([]);
   const codeMirrorRef = useRef();
   let wsProvider = useRef();
@@ -277,6 +278,17 @@ function CodeIO(props) {
     window.open("https://localhost:300", "_blank");
   };
 
+  const TextFile = (notes) => {
+    const element = document.createElement("a");
+    const file = new Blob([notes], {
+      type: "text/plain",
+    });
+    element.href = URL.createObjectURL(file);
+    element.download = "myNotes.txt";
+    document.body.appendChild(element); // Required for this to work in FireFox
+    element.click();
+  };
+
   return (
     <div style={{ width: "100%", height: "95vh" }}>
       <Grid
@@ -293,7 +305,7 @@ function CodeIO(props) {
             xs={12}
             sm={12}
             style={{
-              height: "90%",
+              height: "80%",
               border: "4px solid black",
               fontSize: "15px",
               position: "relative",
@@ -371,6 +383,39 @@ function CodeIO(props) {
             >
               <FileCopyOutlinedIcon />
             </button> */}
+          </Grid>
+          <Grid
+            item
+            xs={12}
+            sm={12}
+            style={{
+              height: "10%",
+              border: "4px solid black",
+              fontSize: "15px",
+              position: "relative",
+            }}
+          >
+            <textarea
+              id="myInput"
+              rows="3"
+              value={note}
+              style={{ height: "91%", width: "96%" }}
+              onChange={(e) => setNote(e.target.value)}
+            ></textarea>
+            <Button
+              type="button"
+              onClick={() => TextFile(note)}
+              value="save"
+              id="save"
+              style={{
+                height: "100%",
+                right: "0px",
+                position: "absolute",
+                background: "springgreen",
+              }}
+            >
+              <GetAppIcon />
+            </Button>
           </Grid>
           <Grid
             item
