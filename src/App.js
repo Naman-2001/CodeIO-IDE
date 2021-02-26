@@ -12,7 +12,7 @@ const App = () => {
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/CodeIO-IDE" component={Home} />
-          <Route exact path="/:id/:roomid" component={CodeIO} />
+          <Route exact path="/CodeIO-IDE/:id/:roomid" component={CodeIO} />
         </Switch>
       </div>
     </BrowserRouter>

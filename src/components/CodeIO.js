@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import Grid from "@material-ui/core/Grid";
 import axios from "axios";
+import { useLocation } from "react-router-dom";
 import { Controlled as CodeMirror } from "react-codemirror2";
 import FileCopyOutlinedIcon from "@material-ui/icons/FileCopyOutlined";
 import { Typography } from "@material-ui/core";
@@ -45,6 +46,8 @@ function CodeIO(props) {
   const {
     match: { params },
   } = props;
+
+  const location = useLocation();
 
   const [code, setCode] = useState("");
   const [token, setToken] = useState("");
@@ -275,6 +278,24 @@ function CodeIO(props) {
     }
   };
 
+  const handleInvite = () => {
+    var toEmail = prompt("Please enter email of the person to invite");
+    axios({
+      method: "post",
+      url: `http://localhost:8000/room/sendinvite/${params.id}/${params.roomid}`,
+      data: {
+        fromEmail: location.state && location.state[0].email,
+        toEmail,
+      },
+    })
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   const handleNewTab = () => {
     window.open("https://localhost:300", "_blank");
   };
@@ -366,6 +387,19 @@ function CodeIO(props) {
             >
               <SaveIcon />{" "}
             </Button>
+            <Button
+              onClick={handleInvite}
+              style={{
+                position: "absolute",
+                color: "white",
+                zIndex: 100,
+                right: "0px",
+                top: "0px",
+                background: "green",
+              }}
+            >
+              Invite +
+            </Button>
             {/* <button
               style={{
                 // position: "absolute",
@@ -448,7 +482,11 @@ function CodeIO(props) {
               item
               xs={12}
               sm={12}
-              style={{ height: "50%", border: "4px solid black" }}
+              style={{
+                height: "50%",
+                border: "4px solid black",
+                fontSize: "15px",
+              }}
             >
               <CodeMirror //input
                 name="code"
@@ -473,7 +511,11 @@ function CodeIO(props) {
               item
               xs={12}
               sm={12}
-              style={{ height: "50%", border: "4px solid black" }}
+              style={{
+                height: "50%",
+                border: "4px solid black",
+                fontSize: "15px",
+              }}
             >
               <CodeMirror //output
                 name="code"

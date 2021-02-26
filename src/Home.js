@@ -24,7 +24,9 @@ const Home = () => {
     })
       .then((res) => {
         console.log(res.data.roomid);
-        history.push(`/${res.data.id}/${res.data.roomid}`);
+        history.push(`/CodeIO-IDE/${res.data.id}/${res.data.roomid}`, [
+          { email },
+        ]);
       })
       .catch((err) => {
         console.log(err);
