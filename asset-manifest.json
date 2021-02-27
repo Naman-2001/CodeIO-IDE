@@ -1,18 +1,18 @@
 {
   "files": {
-    "main.css": "/CodeIO-IDE/static/css/main.70fbeba9.chunk.css",
-    "main.js": "/CodeIO-IDE/static/js/main.73853c76.chunk.js",
-    "main.js.map": "/CodeIO-IDE/static/js/main.73853c76.chunk.js.map",
+    "main.css": "/CodeIO-IDE/static/css/main.2e7e0ac4.chunk.css",
+    "main.js": "/CodeIO-IDE/static/js/main.23e8c9d4.chunk.js",
+    "main.js.map": "/CodeIO-IDE/static/js/main.23e8c9d4.chunk.js.map",
     "runtime-main.js": "/CodeIO-IDE/static/js/runtime-main.5636248e.js",
     "runtime-main.js.map": "/CodeIO-IDE/static/js/runtime-main.5636248e.js.map",
     "static/css/2.283c9e2d.chunk.css": "/CodeIO-IDE/static/css/2.283c9e2d.chunk.css",
     "static/js/2.ab805941.chunk.js": "/CodeIO-IDE/static/js/2.ab805941.chunk.js",
     "static/js/2.ab805941.chunk.js.map": "/CodeIO-IDE/static/js/2.ab805941.chunk.js.map",
     "index.html": "/CodeIO-IDE/index.html",
-    "precache-manifest.285c87cee530612929112a4d80498449.js": "/CodeIO-IDE/precache-manifest.285c87cee530612929112a4d80498449.js",
+    "precache-manifest.8be47ea193b193529b04ccbb3f0a61c4.js": "/CodeIO-IDE/precache-manifest.8be47ea193b193529b04ccbb3f0a61c4.js",
     "service-worker.js": "/CodeIO-IDE/service-worker.js",
     "static/css/2.283c9e2d.chunk.css.map": "/CodeIO-IDE/static/css/2.283c9e2d.chunk.css.map",
-    "static/css/main.70fbeba9.chunk.css.map": "/CodeIO-IDE/static/css/main.70fbeba9.chunk.css.map",
+    "static/css/main.2e7e0ac4.chunk.css.map": "/CodeIO-IDE/static/css/main.2e7e0ac4.chunk.css.map",
     "static/js/2.ab805941.chunk.js.LICENSE.txt": "/CodeIO-IDE/static/js/2.ab805941.chunk.js.LICENSE.txt",
     "static/media/meeting.jpg": "/CodeIO-IDE/static/media/meeting.d93ba3a9.jpg"
   },
@@ -20,7 +20,7 @@
     "static/js/runtime-main.5636248e.js",
     "static/css/2.283c9e2d.chunk.css",
     "static/js/2.ab805941.chunk.js",
-    "static/css/main.70fbeba9.chunk.css",
-    "static/js/main.73853c76.chunk.js"
+    "static/css/main.2e7e0ac4.chunk.css",
+    "static/js/main.23e8c9d4.chunk.js"
   ]
 }
