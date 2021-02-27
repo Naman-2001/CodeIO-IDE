@@ -292,6 +292,25 @@ function CodeIO(props) {
       });
   };
 
+  const handleGithub = () => {
+    axios({
+      url: "/git_get/",
+      params: {
+        username: "mudit-mhjn",
+        repository: "gitmod",
+        branch: "master",
+        file: "package.py",
+      },
+    })
+      .then((res) => {
+        console.log(res.data);
+        setCode(res.data.file_content);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   const handleNewTab = () => {
     window.open("https://localhost:300", "_blank");
   };
@@ -461,6 +480,7 @@ function CodeIO(props) {
               users={users}
               conState={conState}
               handleConnection={handleConnection}
+              handleGithub={handleGithub}
             />
           </Grid>
         </Grid>

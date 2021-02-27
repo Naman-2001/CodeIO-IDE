@@ -12,6 +12,7 @@ import Select from "@material-ui/core/Select";
 import { Button } from "@material-ui/core";
 import Brightness7Icon from "@material-ui/icons/Brightness7";
 import SubjectIcon from "@material-ui/icons/Subject";
+import GitHubIcon from "@material-ui/icons/GitHub";
 import WifiIcon from "@material-ui/icons/Wifi";
 import WifiOffIcon from "@material-ui/icons/WifiOff";
 import { makeStyles } from "@material-ui/core/styles";
@@ -39,6 +40,7 @@ const MenuBar = ({
   users,
   conState,
   handleConnection,
+  handleGithub,
 }) => {
   const classes = useStyles();
 
@@ -143,6 +145,11 @@ const MenuBar = ({
               <WifiOffIcon />
             </Button>
           )}
+        </Grid>
+        <Grid item style={{ margin: "0px 0px 5px 30px", height: "30px" }}>
+          <Button onClick={() => handleGithub()}>
+            <GitHubIcon />
+          </Button>
         </Grid>
 
         <Grid
