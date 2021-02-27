@@ -66,15 +66,11 @@ function CodeIO(props) {
     if (!codeMirrorRef.current) return;
 
     // A Yjs document holds the shared data
-    const ydoc = new Y.Doc({
-      meta: {
-        cellId: 1,
-      },
-    });
+    const ydoc = new Y.Doc();
 
     wsProvider.current = new WebsocketProvider(
       "wss://codeio-backend.herokuapp.com/",
-      // "ws://localhost:8000",
+      // `ws://localhost:8000`,
       params.id,
       ydoc
     );
@@ -282,7 +278,7 @@ function CodeIO(props) {
     var toEmail = prompt("Please enter email of the person to invite");
     axios({
       method: "post",
-      url: `http://localhost:8000/room/sendinvite/${params.id}/${params.roomid}`,
+      url: `https://codeio-backend.herokuapp.com/room/sendinvite/${params.id}/${params.roomid}`,
       data: {
         fromEmail: location.state && location.state[0].email,
         toEmail,
