@@ -1,27 +1,27 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "f6c26e25818608057017be7ebf1bb35f",
+    "revision": "4c0ed061ca6b56b5d99ce45953a5672c",
     "url": "/CodeIO-IDE/index.html"
   },
   {
-    "revision": "f39673d9b918b306be48",
+    "revision": "4a927205b6df1497d383",
     "url": "/CodeIO-IDE/static/css/2.283c9e2d.chunk.css"
   },
   {
-    "revision": "b420000482de8fd92b79",
+    "revision": "746816a9a8169148c373",
     "url": "/CodeIO-IDE/static/css/main.2e7e0ac4.chunk.css"
   },
   {
-    "revision": "f39673d9b918b306be48",
-    "url": "/CodeIO-IDE/static/js/2.ab805941.chunk.js"
+    "revision": "4a927205b6df1497d383",
+    "url": "/CodeIO-IDE/static/js/2.cee73b7b.chunk.js"
   },
   {
     "revision": "ac1ef3354a9c17f3bd672abccd4931d3",
-    "url": "/CodeIO-IDE/static/js/2.ab805941.chunk.js.LICENSE.txt"
+    "url": "/CodeIO-IDE/static/js/2.cee73b7b.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "b420000482de8fd92b79",
-    "url": "/CodeIO-IDE/static/js/main.23e8c9d4.chunk.js"
+    "revision": "746816a9a8169148c373",
+    "url": "/CodeIO-IDE/static/js/main.c64f7edb.chunk.js"
   },
   {
     "revision": "8a2b91c8676b94dc7adc",
