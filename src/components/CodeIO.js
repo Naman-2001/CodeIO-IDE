@@ -563,7 +563,7 @@ function CodeIO(props) {
                 height: "80%",
                 margin: "8px 5px",
                 borderRadius: "0px",
-                zIndex: "1000000000",
+                zIndex: "100",
                 color: "white",
                 // background: "#3ae13a",
                 background:

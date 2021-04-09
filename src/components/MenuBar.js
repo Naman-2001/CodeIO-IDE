@@ -17,6 +17,7 @@ import WifiIcon from "@material-ui/icons/Wifi";
 import WifiOffIcon from "@material-ui/icons/WifiOff";
 import { makeStyles } from "@material-ui/core/styles";
 import "../App.css";
+import FullScreenDialog from "./Dialog";
 const useStyles = makeStyles((theme) => ({
   root: {
     "& .MuiOutlinedInput-input": {
@@ -46,6 +47,14 @@ const MenuBar = ({
 
   const [lang, setLang] = useState("C++");
   const [theme, setTheme] = useState("material-ocean");
+  const [open, setOpen] = useState(false);
+  const handleBoard = () => {
+    setOpen(!open);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   return (
     <AppBar
@@ -57,6 +66,7 @@ const MenuBar = ({
         background: "linear-gradient(45deg,rgb(232 19 19 / 95%), rgb(0 0 0))",
       }}
     >
+      <FullScreenDialog openStatus={open} handleClose={handleClose} />
       {/* <Toolbar style={{ height: "10px" }}> */}
       <Grid
         container
@@ -146,10 +156,13 @@ const MenuBar = ({
             </Button>
           )}
         </Grid>
-        <Grid item style={{ margin: "0px 0px 5px 30px", height: "30px" }}>
+        {/* <Grid item style={{ margin: "0px 0px 5px 30px", height: "30px" }}>
           <Button onClick={() => handleGithub()}>
             <GitHubIcon />
           </Button>
+        </Grid> */}
+        <Grid item style={{ margin: "0px 0px 5px 30px", height: "30px" }}>
+          <Button onClick={() => handleBoard()}>Draw</Button>
         </Grid>
 
         <Grid
