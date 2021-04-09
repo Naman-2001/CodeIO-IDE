@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/CodeIO-IDE/static/css/main.edaa971c.chunk.css",
-    "main.js": "/CodeIO-IDE/static/js/main.7854674a.chunk.js",
-    "main.js.map": "/CodeIO-IDE/static/js/main.7854674a.chunk.js.map",
+    "main.js": "/CodeIO-IDE/static/js/main.60403afd.chunk.js",
+    "main.js.map": "/CodeIO-IDE/static/js/main.60403afd.chunk.js.map",
     "runtime-main.js": "/CodeIO-IDE/static/js/runtime-main.5636248e.js",
     "runtime-main.js.map": "/CodeIO-IDE/static/js/runtime-main.5636248e.js.map",
     "static/css/2.995ce909.chunk.css": "/CodeIO-IDE/static/css/2.995ce909.chunk.css",
     "static/js/2.6f4551e9.chunk.js": "/CodeIO-IDE/static/js/2.6f4551e9.chunk.js",
     "static/js/2.6f4551e9.chunk.js.map": "/CodeIO-IDE/static/js/2.6f4551e9.chunk.js.map",
     "index.html": "/CodeIO-IDE/index.html",
-    "precache-manifest.61a03e3c5d17e549d780ba86ab27b534.js": "/CodeIO-IDE/precache-manifest.61a03e3c5d17e549d780ba86ab27b534.js",
+    "precache-manifest.575a76a386d7e4e7ffda517868890499.js": "/CodeIO-IDE/precache-manifest.575a76a386d7e4e7ffda517868890499.js",
     "service-worker.js": "/CodeIO-IDE/service-worker.js",
     "static/css/2.995ce909.chunk.css.map": "/CodeIO-IDE/static/css/2.995ce909.chunk.css.map",
     "static/css/main.edaa971c.chunk.css.map": "/CodeIO-IDE/static/css/main.edaa971c.chunk.css.map",
@@ -21,6 +21,6 @@
     "static/css/2.995ce909.chunk.css",
     "static/js/2.6f4551e9.chunk.js",
     "static/css/main.edaa971c.chunk.css",
-    "static/js/main.7854674a.chunk.js"
+    "static/js/main.60403afd.chunk.js"
   ]
 }
