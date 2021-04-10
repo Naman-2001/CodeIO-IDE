@@ -37,16 +37,34 @@ const Board = () => {
       transports: ["websocket"],
     });
     console.log(socket);
-    socket.on("canvas-data", (data) => {
+    if (localStorage.getItem("codeioboard") && ctx2.current !== null) {
       var image = new Image();
       image.onload = () => {
         ctx2.current.getContext("2d").drawImage(image, 0, 0);
       };
-      image.src = data;
+      image.src = localStorage.getItem("codeioboard");
+      socket.emit("canvas-data", localStorage.getItem("codeioboard"));
+    }
+
+    if (ctx2.current !== null) {
+      console.log("nhi hai null");
+      socket.on("canvas-data", (data) => {
+        var image = new Image();
+        image.onload = () => {
+          ctx2.current && ctx2.current.getContext("2d").drawImage(image, 0, 0);
+        };
+        image.src = data;
+      });
+    }
+
+    socket.on("clear", () => {
+      const context = ctx2.current.getContext("2d");
+
+      context.clearRect(0, 0, ctx2.current.width, ctx2.current.height);
     });
     // ctx.strokeStyle = color;
     // ctx.lineWidth = size;
-  }, []);
+  }, [ctx2]);
   useEffect(() => {
     var ctx = ctx2.current.getContext("2d");
     ctx.strokeStyle = color;
@@ -122,8 +140,16 @@ const Board = () => {
       root.timeout = setTimeout(function () {
         var base64ImageData = ctx2.current.toDataURL("image/png");
         socket.emit("canvas-data", base64ImageData);
+        localStorage.setItem("codeioboard", base64ImageData);
       }, 1000);
     };
+  };
+
+  const handleClear = () => {
+    const context = ctx2.current.getContext("2d");
+
+    context.clearRect(0, 0, ctx2.current.width, ctx2.current.height);
+    socket.emit("clear");
   };
 
   return (
@@ -147,8 +173,7 @@ const Board = () => {
         </div>
       </div>
       <div>
-        <button onClick={() => setMode("pen")}>Pen</button>
-        <button onClick={() => setMode((prev) => !prev)}>Clear all</button>
+        <button onClick={() => handleClear()}>Clear all</button>
       </div>
 
       <div className="sketch" id="sketch" style={{ height: "93%" }}>
